@@ -11,14 +11,14 @@ describe "Review page", type: :feature do
     click_link "Write Review"
     expect(current_path).to eq("/items/#{@chain.id}/reviews/new")
 
-    fill_in "Title", with: "Best Item Ever"
-    fill_in "Content", with: "I mean it. This item is the best thing ever!"
-    fill_in "Rating", with: 5
+    fill_in :title, with: "Best Item Ever"
+    fill_in :content, with: "I mean it. This item is the best thing ever!"
+    fill_in :rating, with: 5
 
     click_button "Submit Review"
     expect(current_path).to eq("/items/#{@chain.id}")
     expect(page).to have_content("I mean it. This item is the best thing ever!")
     expect(page).to have_content("Best Item Ever")
-    expect(page).to have_content("5")
+    expect(page).to have_content("Rating: 5")
   end
 end
